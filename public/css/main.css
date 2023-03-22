@@ -1,0 +1,816 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #0b0b0b;
+  height: 100%;
+}
+@media only screen and (max-width: 1300px) {
+  body {
+    height: auto;
+  }
+}
+body header nav {
+  display: flex;
+  padding: 1em;
+}
+@media only screen and (max-width: 1300px) {
+  body header nav {
+    position: fixed;
+    z-index: 100;
+    background-color: rgb(20, 20, 20);
+    width: 100%;
+    flex-flow: row nowrap;
+  }
+}
+body header nav menu {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  height: 2em;
+  padding: 0;
+}
+body header nav menu .icon {
+  display: none;
+  height: 100%;
+  width: 3em;
+  cursor: pointer;
+}
+body header nav menu .icon i {
+  color: white;
+  font-size: 2em;
+}
+@media only screen and (max-width: 1000px) {
+  body header nav menu {
+    height: auto;
+    flex-flow: column;
+    align-items: start;
+  }
+  body header nav menu .icon {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 4em;
+    height: 3em;
+  }
+}
+body header nav menu ul {
+  display: flex;
+  padding: 2em;
+  margin: 0;
+  row-gap: 1em;
+  column-gap: 2em;
+  list-style: none;
+}
+@media only screen and (max-width: 1000px) {
+  body header nav menu ul {
+    display: none;
+  }
+  body header nav menu ul.show {
+    display: flex;
+  }
+}
+body header nav menu ul li {
+  position: relative;
+}
+@media only screen and (max-width: 1000px) {
+  body header nav menu ul li {
+    font-size: 1.4em;
+  }
+}
+body header nav menu ul li a {
+  padding: 0 0;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  height: 10em;
+  font-size: 1.2em;
+}
+body header nav menu ul li a::before {
+  position: absolute;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 0.6em;
+  background-color: orange;
+  border-radius: 0 0 0.25em 0.25em;
+  transition: all 0.5s;
+  top: -2em;
+  transition: all 1s;
+}
+body header nav menu ul li a:hover {
+  color: orange;
+  transition: all 1s;
+}
+body header nav menu ul li a.active {
+  color: orange;
+}
+body header nav menu ul li a.active::before {
+  position: absolute;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 0.6em;
+  background-color: orange;
+  border-radius: 0 0 0.25em 0.25em;
+  transition: all 0.5s;
+  top: -1.1em;
+}
+body header nav menu ul li a:hover::before {
+  top: -1.1em;
+  transition: all 0.5s;
+}
+@media only screen and (max-width: 1000px) {
+  body header nav menu ul {
+    flex-flow: column;
+    padding: 1em 1em;
+    height: auto;
+  }
+  body header nav menu ul li a::before {
+    display: none;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  body header nav {
+    justify-content: space-between;
+  }
+}
+body main {
+  height: calc(100% - 7em);
+  display: flex;
+  overflow: AUTO;
+}
+@media only screen and (max-width: 1300px) {
+  body main {
+    flex-flow: column nowrap;
+    height: auto;
+    width: 100%;
+  }
+}
+body main .scrollable {
+  height: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable {
+    flex-flow: column nowrap;
+    height: auto;
+  }
+}
+body main .scrollable .section {
+  min-height: 100%;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-attachment: fixed;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section {
+    min-height: 100vh;
+    width: 100%;
+    background-position: bottom;
+  }
+}
+body main .scrollable .section .background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+body main .scrollable .section .next {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  background-color: orange;
+  border-radius: 100%;
+  cursor: pointer;
+  right: 2em;
+  background-image: url("../img/arrow-left.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 2em;
+  transition: background 1s;
+}
+body main .scrollable .section .next:hover {
+  background-position: 1.5em;
+  transition: background 1s;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .next {
+    transform: rotateZ(90deg);
+    bottom: 6em;
+    left: calc(50% - 2em);
+  }
+}
+body main .scrollable .section .hello {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  max-width: 40em;
+}
+body main .scrollable .section .hello .container {
+  position: relative;
+  width: 60em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .hello .container {
+    width: 100%;
+    max-width: 50em;
+  }
+}
+body main .scrollable .section .hello .container h1 {
+  margin: 0;
+  color: white;
+  font-size: 8em;
+  text-shadow: 0.05em 0.05em 2px rgb(46, 46, 46);
+}
+body main .scrollable .section .hello .container h1 b {
+  color: orange;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .hello .container h1 {
+    font-size: 7em;
+  }
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .hello .container h1 {
+    font-size: 5em;
+  }
+}
+body main .scrollable .section .hello .container p.title {
+  color: rgb(209, 209, 209);
+  position: absolute;
+  top: calc(50% - 3em);
+  right: 0em;
+  width: 12em;
+  line-height: 2em;
+  text-shadow: #0b0b0b 5px 0 10px;
+  font-size: 1.25em;
+}
+body main .scrollable .section .hello .container p.title b {
+  font-size: 1.5em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .hello .container p.title {
+    position: relative;
+    top: 0;
+    right: 0em;
+    width: 12em;
+  }
+}
+body main .scrollable .section .profile {
+  color: white;
+  max-width: 75em;
+  width: 100%;
+  display: flex;
+  column-gap: 5em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .profile {
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    max-width: 75em;
+  }
+}
+body main .scrollable .section .profile .avatar {
+  width: 25em;
+  height: 30em;
+  background-color: orange;
+  border-radius: 1.5em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .profile .avatar {
+    width: 15em;
+    height: 15em;
+  }
+}
+body main .scrollable .section .profile .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 1.5em;
+}
+body main .scrollable .section .profile aside h2 {
+  font-size: 4em;
+}
+body main .scrollable .section .profile aside h2 b {
+  color: orange;
+}
+body main .scrollable .section .profile aside .grid {
+  display: flex;
+  margin-left: 5em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .profile aside .grid {
+    flex-flow: column nowrap;
+  }
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .profile aside .grid {
+    margin: 0;
+  }
+}
+body main .scrollable .section .profile aside .grid .clm ul {
+  margin: 0;
+  padding: 0;
+}
+body main .scrollable .section .profile aside .grid .clm ul li {
+  align-items: center;
+  display: flex;
+  line-height: 2em;
+  font-size: 1.25em;
+}
+body main .scrollable .section .profile aside .grid .clm ul li b {
+  color: orange;
+  padding-right: 0.5em;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .profile aside .grid .clm ul li {
+    font-size: 1em;
+  }
+}
+body main .scrollable .section h2.reverse {
+  position: absolute;
+  margin: 0;
+  left: 0;
+  top: 0;
+  font-size: 3em;
+  /* height: 100%; */
+  transform: rotateZ(-90deg);
+  translate: 0em 3em;
+  text-shadow: #0b0b0b 5px 0 10px;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section h2.reverse {
+    transform: rotateZ(0deg);
+    translate: initial;
+    position: relative;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section#skills, body main .scrollable .section#experiences {
+    background-position: center;
+    background-size: cover;
+  }
+}
+body main .scrollable .section .skill {
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 5em;
+  position: relative;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .skill {
+    flex-flow: column nowrap;
+    row-gap: 5em;
+  }
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .skill {
+    padding: 2em 0;
+  }
+}
+body main .scrollable .section .skill__container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 15em;
+  gap: 3em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .skill__container {
+    margin-left: 0;
+  }
+}
+body main .scrollable .section .skill__container ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  width: 100%;
+  gap: 5em;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .skill__container ul {
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+}
+body main .scrollable .section .skill__container ul li {
+  text-align: center;
+  width: 10em;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-shadow: #0b0b0b 5px 0 10px;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .skill__container ul li {
+    width: 6em;
+  }
+}
+body main .scrollable .section .skill__container ul li .icon {
+  background-color: rgb(20, 20, 20);
+  width: 6em;
+  height: 6em;
+  transform: rotateZ(45deg);
+  border-radius: 1em;
+  margin-bottom: 2em;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  color: orange;
+}
+body main .scrollable .section .skill__container ul li .icon i {
+  font-size: 3em;
+  transform: rotateZ(-45deg);
+}
+body main .scrollable .section .portfolio {
+  color: white;
+  position: relative;
+}
+body main .scrollable .section .portfolio__container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 15em;
+  gap: 3em;
+}
+body main .scrollable .section .contact {
+  color: white;
+  position: relative;
+}
+body main .scrollable .section .contact__container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 15em;
+  gap: 3em;
+}
+body main .scrollable .section .resume {
+  color: white;
+  position: relative;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .resume {
+    padding: 5em 0;
+  }
+}
+body main .scrollable .section .resume__container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 15em;
+  gap: 3em;
+  margin: 2em 0 2em 12em;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .resume__container {
+    margin-left: 0;
+  }
+}
+body main .scrollable .section .resume__container .row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  column-gap: 2em;
+  position: relative;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .resume__container .row {
+    flex-flow: column nowrap;
+    row-gap: 2em;
+  }
+}
+body main .scrollable .section .resume__container .row:last-child {
+  column-gap: 3em;
+}
+body main .scrollable .section .resume__container .row.timeline {
+  width: 38em;
+  height: 0.25em;
+  background-color: rgb(20, 20, 20);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  justify-content: space-between;
+}
+body main .scrollable .section .resume__container .row.timeline li {
+  width: 1em;
+  height: 1em;
+  border-radius: 0.1em;
+  transform: rotateZ(45deg);
+  background-color: orange;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .resume__container .row.timeline {
+    top: 4.5em;
+    left: -3em;
+    width: 0.25em;
+    height: 50em;
+    position: absolute;
+  }
+  body main .scrollable .section .resume__container .row.timeline li {
+    margin-left: -0.5em;
+  }
+}
+body main .scrollable .section .resume__container .row article {
+  background-color: rgb(20, 20, 20);
+  border-radius: 1em;
+  padding: 2em 5em 2em 3em;
+  display: flex;
+  flex-flow: column;
+  row-gap: 0.25em;
+  position: relative;
+  width: 8.5em;
+  background-size: 4em;
+  background-repeat: no-repeat;
+  background-position: calc(100% - 1em) calc(100% - 1em);
+}
+body main .scrollable .section .resume__container .row article.top:after {
+  content: "";
+  width: 0;
+  height: 0;
+  margin: 1em auto;
+  position: absolute;
+  left: calc(50% - 1em);
+  border-top: 1em solid rgb(20, 20, 20);
+  border-left: 0.8em solid transparent;
+  border-right: 0.8em solid transparent;
+  bottom: -2em;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .resume__container .row article.top:after {
+    transform: rotateZ(90deg);
+    left: -1.25em;
+    top: calc(50% - 1.5em);
+  }
+}
+body main .scrollable .section .resume__container .row article.teacher {
+  background-image: url(../img/teacher.svg);
+}
+body main .scrollable .section .resume__container .row article.code {
+  background-image: url(../img/code.svg);
+}
+body main .scrollable .section .resume__container .row article.degree {
+  background-image: url(../img/degree.svg);
+}
+body main .scrollable .section .resume__container .row article.bottom:after {
+  content: "";
+  width: 0;
+  height: 0;
+  margin: 1em auto;
+  position: absolute;
+  left: calc(50% - 1em);
+  border-top: 1em solid rgb(20, 20, 20);
+  border-left: 0.8em solid transparent;
+  border-right: 0.8em solid transparent;
+  transform: rotateZ(180deg);
+  top: -2em;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .resume__container .row article.bottom:after {
+    transform: rotateZ(90deg);
+    left: -1.25em;
+    top: calc(50% - 1.5em);
+  }
+}
+body main .scrollable .section .resume__container .row article h4 {
+  margin: 0 0 1em;
+  font-size: 1.2em;
+  font-weight: normal;
+  color: orange;
+}
+body main .scrollable .section .resume__container .row article span {
+  font-size: 1em;
+  line-height: 1.5em;
+}
+body main .scrollable .section .portfolio {
+  color: white;
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .portfolio {
+    padding-bottom: 10em;
+  }
+}
+body main .scrollable .section .portfolio__container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 15em;
+  gap: 3em;
+  flex-flow: row wrap;
+  max-width: 60em;
+  overflow: auto;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .portfolio__container {
+    margin-left: 0;
+  }
+}
+body main .scrollable .section .portfolio__container article {
+  width: 18em;
+}
+body main .scrollable .section .portfolio__container article a.picture {
+  width: calc(100% - 0.5em);
+  height: 12em;
+  border-radius: 1em;
+  overflow: hidden;
+  border-radius: 1em;
+  display: block;
+  border: 0.25em solid rgb(209, 209, 209);
+}
+body main .scrollable .section .portfolio__container article a.picture img {
+  width: 100%;
+  height: 15em;
+  object-position: center;
+  object-fit: cover;
+  transition: all 1s;
+  filter: grayscale(1);
+}
+body main .scrollable .section .portfolio__container article a.picture img:hover {
+  transform: scale(1.1);
+  filter: grayscale(0);
+}
+body main .scrollable .section .portfolio__container article .text .tags {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 0.25em;
+}
+body main .scrollable .section .portfolio__container article .text .tags span {
+  border-radius: 0.5em;
+  padding: 0.5em 1em;
+  background-color: orange;
+  color: white;
+  font-size: 0.8em;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section#contact {
+    background-size: cover;
+  }
+}
+body main .scrollable .section .contact {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 5em;
+}
+@media only screen and (max-width: 900px) {
+  body main .scrollable .section .contact {
+    padding: 1em;
+  }
+}
+body main .scrollable .section .contact__container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-left: 15em;
+  gap: 3em;
+}
+@media only screen and (max-width: 1300px) {
+  body main .scrollable .section .contact__container {
+    margin-left: 0;
+  }
+}
+body main .scrollable .section .contact__container form {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  row-gap: 1em;
+}
+body main .scrollable .section .contact__container .row {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  column-gap: 1em;
+}
+body main .scrollable .section .contact__container button {
+  color: white;
+  padding: 0.8em 2em;
+  border-radius: 1em;
+  line-height: 1em;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: orange;
+}
+body main .scrollable .section .contact__container .field {
+  display: flex;
+  flex-flow: column nowrap;
+  row-gap: 0.5em;
+  width: 100%;
+}
+body main .scrollable .section .contact__container .field label {
+  margin-left: 1em;
+}
+body main .scrollable .section .contact__container .field input {
+  width: 100%;
+  color: white;
+  padding: 0.8em 1em;
+  border-radius: 1em;
+  line-height: 1em;
+  border: none;
+  background-color: #1a1a1a;
+}
+body main .scrollable .section .contact__container .field textarea {
+  width: 100%;
+  color: white;
+  padding: 0.8em 1em;
+  border-radius: 1em;
+  line-height: 1em;
+  border: none;
+  min-height: 10em;
+  resize: vertical;
+  background-color: #1a1a1a;
+}
+body footer {
+  width: calc(100% - 2em);
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0b0b0b;
+  position: fixed;
+  bottom: 0;
+  height: 5em;
+  width: 100%;
+}
+@media only screen and (max-width: 1300px) {
+  body footer {
+    padding: 0.5em 0;
+    height: 1em;
+  }
+}
+@media only screen and (max-width: 900px) {
+  body footer {
+    background-color: transparent;
+  }
+}
+body footer .progress {
+  width: 100%;
+  max-width: 40em;
+  background-color: rgb(20, 20, 20);
+  border-radius: 1em;
+  position: relative;
+  height: 0.5em;
+}
+@media only screen and (max-width: 900px) {
+  body footer .progress {
+    max-width: calc(100% - 8em);
+  }
+}
+body footer .progress .bar {
+  height: 0.5em;
+  width: 3em;
+  border-radius: 1em;
+  background-color: orange;
+  width: 2em;
+  color: orange;
+  position: absolute;
+}
+body footer .progress .bar label {
+  color: orange;
+  position: absolute;
+  top: -2em;
+  left: -1.5em;
+  text-align: center;
+}
+
+/*# sourceMappingURL=main.css.map */
