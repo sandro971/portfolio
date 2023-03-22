@@ -46,6 +46,8 @@ body header nav menu .icon {
 body header nav menu .icon i {
   color: white;
   font-size: 2em;
+  align-items: center;
+  display: flex;
 }
 @media only screen and (max-width: 1000px) {
   body header nav menu {
