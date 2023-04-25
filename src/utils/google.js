@@ -9,6 +9,5 @@ const verifyIdToken = (token, handle) => {
 };
 
 module.exports = {
-    getClient,
     verifyIdToken
 }
