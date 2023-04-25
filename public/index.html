@@ -524,15 +524,17 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
                         </form>
 
                         <script>
-                            var captchaToken
-                            grecaptcha.enterprise.ready(function() {
-                                grecaptcha.enterprise.execute('6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM', {action: 'login'}).then(function(token) {
-                                    captchaToken = token
+                            (function(){
+                                var captchaToken
+                                grecaptcha.enterprise.ready(function() {
+                                    grecaptcha.enterprise.execute('6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM', {action: 'login'}).then(function(token) {
+                                        captchaToken = token
+                                    });
                                 });
-                            });
 
-                            var contact_form = document.querySelector('#contact-form')
-                            contact_form.addEventListener('submit', event => {
+                                var contact_form = document.querySelector('#contact-form')
+                                    contact_form.addEventListener('submit', event => {
+                                })
                                 event.preventDefault()
                                 event.stopPropagation()
 
@@ -557,7 +559,7 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
                                 .catch(err=> {
                                     
                                 })
-                            })
+                            })()
                         </script>
                     </div>
                 </div>
