@@ -12,7 +12,7 @@ const progress = document.getElementById('progress')
 const main = document.getElementById('main')
 const bar = document.getElementById('progress-bar')
 const sections = document.querySelectorAll('section')
-const contact_form = document.querySelector('#contact_form')
+const contact_form = document.querySelector('#contact-form')
 const menu_icon = document.querySelector('menu .icon')
 const menu_ul = document.querySelector('menu ul')
 var language = 0, menu_icon_show = false

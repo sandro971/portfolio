@@ -514,8 +514,6 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
                             </div>
                             <div class="row">
                                 <div class="field">
-                                    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM"></script>
-                                   
                                 </div>
                             </div>
                             <div class="row">
@@ -524,40 +522,40 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
                         </form>
 
                         <script>
-                            var captchaToken
-                            grecaptcha.enterprise.ready(function() {
-                                grecaptcha.enterprise.execute('6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM', {action: 'login'}).then(function(token) {
-                                    captchaToken = token
-                                });
-                            });
+                            (function(){                                
+                                var contact_form = document.querySelector('#contact-form')
+                                contact_form.addEventListener('submit', event => {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                    grecaptcha.ready(function() {
+                                        grecaptcha.execute('6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM', {action: 'submit'}).then(function(captchaToken) {
+                                            // Add your logic to submit to your backend server here.$
 
-                            var contact_form = document.querySelector('#contact-form')
-                            contact_form.addEventListener('submit', event => {
-                                event.preventDefault()
-                                event.stopPropagation()
-
-                                var body = {
-                                    'token': captchaToken,
-                                    'email': event.target.email.value,
-                                    'name': event.target.name.value,
-                                    'organisation': event.target.organisation.value,
-                                    'message': event.target.message.value
-                                }
+                                            var body = {
+                                                'token': captchaToken,
+                                                'email': event.target.email.value,
+                                                'name': event.target.name.value,
+                                                'organisation': event.target.organisation.value,
+                                                'message': event.target.message.value
+                                            }
 
 
-                                fetch('/contact', {
-                                    method: "POST",
-                                    headers:{'content-type': 'application/json'},
-                                    body: JSON.stringify(body)
+                                            fetch('/contact', {
+                                                method: "POST",
+                                                headers:{'content-type': 'application/json'},
+                                                body: JSON.stringify(body)
+                                            })
+                                            .then(resp=> resp.json())
+                                            .then(data=> {
+                                                
+                                            })
+                                            .catch(err=> {
+                                                
+                                            })
+                                        });
+                                    });
                                 })
-                                .then(resp=> resp.json())
-                                .then(data=> {
-                                    
-                                })
-                                .catch(err=> {
-                                    
-                                })
-                            })
+                            })()
                         </script>
                     </div>
                 </div>
@@ -573,5 +571,8 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
             </div>
         </div>
     </footer>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM"></script>
+
+
 </body>
 </html>
