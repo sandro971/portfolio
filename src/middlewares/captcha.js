@@ -2,6 +2,7 @@ const { verifyIdToken } = require("../utils/google")
 
 const isValidGoogleToken = (provider='body', attribute='token')=>{
     return async (req, res, next) => {
+        console.debug(req.body)
         try{
             req.google = await verifyIdToken(req[provider][attribute])
             next()
