@@ -1,25 +1,10 @@
 
 
-const isValid = (schema, provider)=>{
+const isValid = (schema, provider="body")=>{
     return function(req, res, next){
-        if(!schema) return next()
-        
-        if(!provider){
-            switch(req.method.toUpperCase()){
-                case 'POST':
-                case 'PUT':
-                    provider = 'body'
-                    break
-
-                default:
-                case 'GET':
-                case 'DELETE':
-                    provider = 'query'
-                    break
-            }   
-        }
-        
-        const {error, value} = schema.validate( req[provider] )
+        const {error, value} = schema.validate( req[provider], {
+            abortEarly: false
+        } )
         
         if(error) return res.status(401).json({error})
 
