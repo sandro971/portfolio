@@ -10,10 +10,10 @@ const { notfoundMiddleware } = require('./src/middlewares/notfound')
 const { exceptionMiddleware } = require('./src/middlewares/exception')
 
  
+app.use(cors())
 app.use(express.json());
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: false })); 
-app.use(cors())
 app.use(exceptionMiddleware)
 app.use(require('./src/routes/index'))
 app.use('*', notfoundMiddleware)
