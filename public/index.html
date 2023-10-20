@@ -87,7 +87,7 @@
                                         <b>Nationalité :</b> Française
                                     </li>
                                     <li>
-                                        <b>TJM :</b> 400€
+                                        <b>TJM :</b> 550€
                                     </li>
                                     <li>
                                         <b>Langues :</b> Français, Anglais, Créole
@@ -475,47 +475,65 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
                     <h2 class="reverse">Me contacter</h2>
 
                     <div class="contact__container">
-                        <form action="" id="contact_form">
+                        <form action="" id="contact-form">
                             <div class="row">
                                 <div class="clm">
                                     <div class="field">
                                         <label for="name">Nom</label>
-                                        <input type="text" id="name" placeholder="Votre nom" min="1" max="100">
+                                        <input type="text" id="name" placeholder="Votre nom" min="1" max="100" required>
                                     </div>
                                 </div>
                                 <div class="clm">
                                     <div class="field">
                                         <label for="organisation">Organisation</label>
-                                        <input type="text" id="organisation" placeholder="Votre organisme" min="1" max="100">
+                                        <input type="text" id="organisation" placeholder="Votre organisme" min="1" max="100" required>
+                                    </div>
+                                </div>
+                                <div class="clm">
+                                    <div class="field">
+                                        <label for="email">E-mail</label>
+                                        <input type="email" id="email" placeholder="Votre adresse email" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="field">
-                                    <label for="organisation">Message</label>
-                                    <textarea name="" id="" cols="30" rows="10" placeholder="Votre message ici" min="1" max="1000"></textarea>
+                                    <label for="message">Message</label>
+                                    <textarea name="message" id="" cols="30" rows="10" placeholder="Votre message ici" min="1" max="1000" required></textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="field">
-                                    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM"></script>
-                                    <script>
-                                        var captchaToken
-                                        grecaptcha.enterprise.ready(function() {
-                                            grecaptcha.enterprise.execute('6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM', {action: 'login'}).then(function(token) {
-                                                captchaToken = token
-                                            });
-                                        });
+                                </div>
+                            </div>
+                            <div class="row">
+                                <button>Envoyer</button>
+                            </div>
+                        </form>
 
-                                        contact_form.addEventListener(event => {
-                                            var contact_form = document.getElementById('contact_form')
-                                            var body = new FormData(contact_form)
-                                            body.append('token', captchaToken)
+                        <script>
+                            (function(){                                
+                                var contact_form = document.querySelector('#contact-form')
+                                contact_form.addEventListener('submit', event => {
+                                    event.preventDefault()
+                                    event.stopPropagation()
+                                    grecaptcha.ready(function() {
+                                        grecaptcha.execute('6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM', {action: 'submit'}).then(function(captchaToken) {
+                                            // Add your logic to submit to your backend server here.$
+
+                                            var body = {
+                                                'token': captchaToken,
+                                                'email': event.target.email.value,
+                                                'name': event.target.name.value,
+                                                'organisation': event.target.organisation.value,
+                                                'message': event.target.message.value
+                                            }
+
+
                                             fetch('/contact', {
                                                 method: "POST",
-                                                headers:{
-                                                    body: new FormData(e.target),
-                                                }
+                                                headers:{'content-type': 'application/json'},
+                                                body: JSON.stringify(body)
                                             })
                                             .then(resp=> resp.json())
                                             .then(data=> {
@@ -524,14 +542,11 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
                                             .catch(err=> {
                                                 
                                             })
-                                        })
-                                    </script>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <button>Envoyer</button>
-                            </div>
-                        </form>
+                                        });
+                                    });
+                                })
+                            })()
+                        </script>
                     </div>
                 </div>
             </section>
@@ -546,5 +561,8 @@ background-image: url(https://images.pexels.com/photos/1276357/pexels-photo-1276
             </div>
         </div>
     </footer>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeTexElAAAAAPem2gU3a0A-moTJwmJwG3dNLpMM"></script>
+
+
 </body>
 </html>

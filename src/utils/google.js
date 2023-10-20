@@ -1,25 +1,13 @@
-const {OAuth2Client} = require('google-auth-library');
+const axios = require('axios')
 
+const verifyIdToken = (token, handle) => {
+    const url = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.GOOGLE_CLIENT_ID}&response=${token}`;
 
-const getClient = function(){
-    return new OAuth2Client(
-        process.env.GOOGLE_OAUTH2_SECRET,
-    )
-}
-
-const verifyIdToken = async function (token) {
-    const client = getClient()
-
-    const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: process.env.GOOGLE_OAUTH2_SECRET
-    });
-
-    return ticket.getPayload();
-}
-
+    axios.post(url)
+        .then(google_response => handle())
+        .catch(error => handle(error));
+};
 
 module.exports = {
-    getClient,
     verifyIdToken
 }
